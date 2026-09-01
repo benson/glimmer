@@ -1,8 +1,6 @@
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   createShapeId,
-  defaultEditorAssetUrls,
-  defaultShapeUtils,
   defaultTools,
   Editor,
   TldrawEditor,
@@ -28,7 +26,8 @@ const FILTERS: Array<{ value: 'all' | GlimmerType; label: string }> = [
 const canvasComponents: TLEditorComponents = {
   LoadingScreen: null,
 }
-const canvasShapeUtils = [...defaultShapeUtils, GlimmerShapeUtil]
+const canvasShapeUtils = [GlimmerShapeUtil]
+const canvasOptions = { createTextOnCanvasDoubleClick: false }
 const getCanvasShapeVisibility = (shape: { meta: Record<string, unknown> }) => shape.meta.hidden ? 'hidden' as const : 'inherit' as const
 
 const bundledItems = bundledData as GlimmerItem[]
@@ -131,10 +130,17 @@ export function App() {
         event.preventDefault()
         openAddDialog()
       }
+      if (event.key === 'Enter' && !editing && editor && !document.querySelector('dialog[open]')) {
+        const selected = editor.getSelectedShapes()
+        if (selected.length === 1 && selected[0].type === GLIMMER_SHAPE_TYPE) {
+          event.preventDefault()
+          setActiveId((selected[0] as GlimmerShape).props.itemId)
+        }
+      }
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [])
+  }, [editor])
 
   const handleMount = useCallback((nextEditor: Editor) => {
     setEditor(nextEditor)
@@ -211,10 +217,10 @@ export function App() {
     <div className="app-shell">
       <div className="canvas-wrap">
         <TldrawEditor
-          assetUrls={defaultEditorAssetUrls}
           shapeUtils={canvasShapeUtils}
           tools={defaultTools}
           initialState="select"
+          options={canvasOptions}
           components={canvasComponents}
           getShapeVisibility={getCanvasShapeVisibility}
           onMount={handleMount}

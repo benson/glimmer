@@ -95,12 +95,9 @@ export class GlimmerShapeUtil extends BaseBoxShapeUtil<GlimmerShape> {
     return false
   }
 
-  override onClick(shape: GlimmerShape) {
-    openGlimmer(shape.props.itemId)
-  }
-
   override onDoubleClick(shape: GlimmerShape) {
     openGlimmer(shape.props.itemId)
+    return { id: shape.id, type: shape.type }
   }
 
   override component(shape: GlimmerShape) {
@@ -130,12 +127,7 @@ export class GlimmerShapeUtil extends BaseBoxShapeUtil<GlimmerShape> {
 
             <div className="canvas-card-footer">
               <span>{props.url ? hostnameFor(props.url) : 'kept for later'}</span>
-              <span
-                className="canvas-open-button"
-                aria-hidden="true"
-              >
-                ↗
-              </span>
+              <span className="canvas-open-hint" aria-hidden="true">double-click to open ↗</span>
             </div>
           </div>
         </article>
