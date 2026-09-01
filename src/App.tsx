@@ -28,6 +28,7 @@ const canvasComponents: TLEditorComponents = {
 }
 const canvasShapeUtils = [GlimmerShapeUtil]
 const canvasOptions = { createTextOnCanvasDoubleClick: false }
+const canvasCameraOptions = { wheelBehavior: 'zoom' as const }
 const getCanvasShapeVisibility = (shape: { meta: Record<string, unknown> }) => shape.meta.hidden ? 'hidden' as const : 'inherit' as const
 
 const bundledItems = bundledData as GlimmerItem[]
@@ -221,6 +222,7 @@ export function App() {
           tools={defaultTools}
           initialState="select"
           options={canvasOptions}
+          cameraOptions={canvasCameraOptions}
           components={canvasComponents}
           getShapeVisibility={getCanvasShapeVisibility}
           onMount={handleMount}
@@ -269,6 +271,7 @@ export function App() {
       </header>
 
       <div className="canvas-label" aria-hidden="true">things I noticed</div>
+      <div className="canvas-controls-hint" aria-hidden="true">scroll to zoom · middle-drag or space-drag to pan</div>
       <div className="item-count" aria-live="polite">{visibleItems.length} {visibleItems.length === 1 ? 'glimmer' : 'glimmers'}</div>
 
       {!visibleItems.length ? (

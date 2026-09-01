@@ -248,10 +248,10 @@ button { color: inherit; }
   user-select: none;
 }
 
-.item-count {
+.item-count,
+.canvas-controls-hint {
   position: fixed;
   z-index: 3;
-  right: 22px;
   bottom: 20px;
   padding: 7px 11px;
   border: 1px solid rgb(25 25 22 / 12%);
@@ -262,6 +262,9 @@ button { color: inherit; }
   backdrop-filter: blur(8px);
   pointer-events: none;
 }
+
+.item-count { right: 22px; }
+.canvas-controls-hint { left: 22px; }
 
 .canvas-card-shell {
   width: 100%;
@@ -604,7 +607,8 @@ button { color: inherit; }
   .filters { top: 70px; left: 8px; max-width: calc(100% - 16px); overflow-x: auto; scrollbar-width: none; }
   .filter-chip { white-space: nowrap; }
   .canvas-label { top: 118px; left: 20px; font-size: 48px; }
-  .item-count { display: none; }
+  .item-count,
+  .canvas-controls-hint { display: none; }
   .field-row { display: grid; }
   .modal form,
   .detail-modal article { padding: 22px; }
