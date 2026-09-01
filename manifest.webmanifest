@@ -1,0 +1,12 @@
+{
+  "name": "glimmer — things worth keeping",
+  "short_name": "glimmer",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f1eee7",
+  "theme_color": "#f1eee7",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
+
