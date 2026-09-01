@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "things.json"
-MEDIA_PATH = ROOT / "media"
+MEDIA_PATH = ROOT / "public" / "media"
 URL_RE = re.compile(r"https?://[^\s<>)\]}]+", re.IGNORECASE)
 TIMECODE_RE = re.compile(r"\b(\d{1,2}):(\d{2})\s*(?:-|–|—|to)\s*(\d{1,2}):(\d{2})\b", re.IGNORECASE)
 SINGLE_TIMECODE_RE = re.compile(r"\b(\d{1,2}):(\d{2})\b")
@@ -126,7 +126,7 @@ def main() -> int:
         return 1
 
     if copied_media:
-        MEDIA_PATH.mkdir(exist_ok=True)
+        MEDIA_PATH.mkdir(parents=True, exist_ok=True)
         shutil.copy2(args.image, copied_media)
 
     collection.append(item)
@@ -139,4 +139,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -2,135 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f1eee7" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f2efe8" />
     <meta name="description" content="A loose little collection of beautiful things." />
     <title>glimmer — things worth keeping</title>
-    <link rel="icon" href="icon.svg" type="image/svg+xml" />
-    <link rel="manifest" href="manifest.webmanifest" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
   </head>
   <body>
-    <a class="skip-link" href="#collection">Skip to collection</a>
-
-    <header class="masthead">
-      <div class="wordmark" aria-label="Glimmer">
-        <span class="wordmark-mark" aria-hidden="true">✦</span>
-        <span>glimmer</span>
-      </div>
-
-      <p class="tagline">a loose collection of things worth keeping</p>
-
-      <div class="top-actions">
-        <label class="search-wrap">
-          <span class="sr-only">Search your glimmers</span>
-          <input id="search" type="search" autocomplete="off" placeholder="find something…" />
-          <kbd>/</kbd>
-        </label>
-        <button class="button button-primary" id="add-button" type="button">
-          <span aria-hidden="true">＋</span> keep something
-        </button>
-      </div>
-    </header>
-
-    <nav class="filter-row" aria-label="Filter the collection">
-      <div class="filter-list" id="filters">
-        <button class="filter is-active" data-filter="all" type="button">everything</button>
-        <button class="filter" data-filter="site" type="button">sites</button>
-        <button class="filter" data-filter="sound" type="button">sounds</button>
-        <button class="filter" data-filter="image" type="button">images</button>
-        <button class="filter" data-filter="note" type="button">notes</button>
-      </div>
-
-      <div class="collection-actions">
-        <span class="count" id="count" aria-live="polite"></span>
-        <button class="quiet-button" id="stir-button" type="button">stir the table</button>
-        <button class="quiet-button" id="export-button" type="button">take a copy</button>
-        <label class="quiet-button file-button">
-          bring one in
-          <input id="import-input" type="file" accept="application/json" />
-        </label>
-      </div>
-    </nav>
-
-    <main id="collection" class="board-scroller" tabindex="-1">
-      <section class="board" id="board" aria-label="Your collection of beautiful things">
-        <div class="empty-state" id="empty-state" hidden>
-          <span aria-hidden="true">✦</span>
-          <h1>nothing here, for now</h1>
-          <p>Keep the next thing that makes you stop for half a second.</p>
-          <button class="button" type="button" data-open-add>keep something</button>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer-note">
-      <p>drag the cards wherever they feel right <span aria-hidden="true">·</span> everything stays yours</p>
-    </footer>
-
-    <dialog class="sheet" id="add-dialog">
-      <form class="sheet-inner" id="add-form" method="dialog">
-        <div class="sheet-heading">
-          <div>
-            <p class="eyebrow">a new glimmer</p>
-            <h2>what caught you?</h2>
-          </div>
-          <button class="icon-button" type="button" data-close-dialog aria-label="Close">×</button>
-        </div>
-
-        <label class="field field-large">
-          <span>Drop it here</span>
-          <textarea id="capture-input" rows="5" required placeholder="I love this site https://…\n\n1:15–1:25 in this song is so nice\n\nor just a thought you want to keep"></textarea>
-        </label>
-
-        <div class="field-row">
-          <label class="field">
-            <span>A title, if it has one</span>
-            <input id="title-input" type="text" placeholder="leave blank and I’ll guess" />
-          </label>
-
-          <label class="field upload-field">
-            <span>A picture, if there is one</span>
-            <input id="image-input" type="file" accept="image/*" />
-          </label>
-        </div>
-
-        <div class="sheet-footer">
-          <p>Saved in this browser. Tell Codex “keep this in Glimmer” to publish it everywhere.</p>
-          <button class="button button-primary" type="submit">keep it</button>
-        </div>
-      </form>
-    </dialog>
-
-    <dialog class="sheet detail-sheet" id="detail-dialog">
-      <article class="detail-inner" id="detail-content"></article>
-    </dialog>
-
-    <template id="card-template">
-      <article class="glimmer-card">
-        <button class="drag-handle" type="button" aria-label="Drag to move">
-          <span></span><span></span><span></span><span></span><span></span><span></span>
-        </button>
-        <button class="card-open" type="button" aria-label="Open this glimmer"></button>
-        <div class="card-media" hidden></div>
-        <div class="card-main">
-          <div class="card-meta">
-            <span class="type-label"></span>
-            <time></time>
-          </div>
-          <h2 class="card-title"></h2>
-          <p class="card-note"></p>
-          <div class="timecode" hidden></div>
-          <a class="card-link" target="_blank" rel="noreferrer">
-            <span class="link-host"></span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </article>
-    </template>
-
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-    <script type="module" src="app.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
